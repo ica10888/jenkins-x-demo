@@ -43,6 +43,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<excludes>
+						<exclude>*.keep</exclude>
+						<exclude>*.properties</exclude>
+						<exclude>*.yml</exclude>
+						<exclude>*.yaml</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>config</exclude>
+						<exclude>config/*</exclude>
+						<exclude>config/*/*</exclude>
+						<exclude>config/*/*/*</exclude>
+					</excludes>
+					<archive>
+						<manifest>
+							<useUniqueVersions>false</useUniqueVersions>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<!--在外部补充配置main方法的入口-->
+							<mainClass>com.example.DemoApplication</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>./config/</Class-Path>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
